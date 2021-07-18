@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PassportAuthController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('register', [AuthenticationController::class, 'register']);
+Route::post('login', [AuthenticationController::class, 'login']);
+
+Route::middleware('auth:api')->post('/task/add', [TaskController::class, 'store']);
+Route::middleware('auth:api')->post('/task/status/{id}', [TaskController::class, 'update']);
