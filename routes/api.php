@@ -21,6 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
-
-Route::middleware('auth:api')->post('/task/add', [TaskController::class, 'store']);
-Route::middleware('auth:api')->post('/task/status/{id}', [TaskController::class, 'update']);
+Route::middleware('auth:api')->group(function () {
+    Route::resource('tasks', TaskController::class);
+});
