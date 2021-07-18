@@ -42,7 +42,9 @@ class TaskController extends Controller
  
         $task = new Task();
         $task->task = $request->task;
-        $task->status = $request->status;
+        if($request->status){
+            $task->status = $request->status;
+        }
  
         if (auth()->user()->tasks()->save($task))
             return response()->json([
