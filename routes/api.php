@@ -19,8 +19,8 @@ use App\Http\Controllers\TaskController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('register', [AuthenticationController::class, 'register']);
-Route::post('login', [AuthenticationController::class, 'login']);
+Route::post('register', [PassportAuthController::class, 'register']);
+Route::post('login', [PassportAuthController::class, 'login']);
 
 Route::middleware('auth:api')->post('/task/add', [TaskController::class, 'store']);
 Route::middleware('auth:api')->post('/task/status/{id}', [TaskController::class, 'update']);
